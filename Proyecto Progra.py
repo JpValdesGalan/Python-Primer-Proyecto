@@ -165,21 +165,54 @@ def menujuego():
     menujuego_frame.pack()
 
     Label(menujuego_frame, text='Elige una categoria', bg='LightSkyBlue1', width=33, height=2, font=('Calibri', 13)).place(x=0, y=0)
-    Button(menujuego_frame, text='Matematicas',cursor='hand2', width=10, height=1).place(x=110, y=75)
+    Button(menujuego_frame, text='Matematicas',cursor='hand2', width=10, height=1, command=palabra_menu).place(x=110, y=75)
     Button(menujuego_frame, text='Efemerides', cursor='hand2', width=10, height=1).place(x=110, y=125)
     Button(menujuego_frame, text='Capitales', cursor='hand2', width=10, height=1).place(x=110, y=175)
     Button(menujuego_frame, text='Como jugar', cursor='hand2', width=10, height=1, command=comojugar).place(x=55, y=225)
     Button(menujuego_frame, text='Cerrar Sesion', cursor='hand2', width=10, height=1, command=cerrarsesion).place(x=165, y=225)
 
 
-# ----JUEGO----
-def juego():
+# ----BOTON MATEMATICAS----
+
+
+
+# ----BOTON EFEMERIDES----
+
+
+
+# ----BOTON CAPITALES----
+
+
+
+# ----PALABRA A ADIVNIAR----
+def palabra_menu():
     menujuego_frame.destroy()
     main.geometry('300x400')
+
+    global palabra_frame
+    palabra_frame = Frame(width=300, height=400)
+    palabra_frame.pack()
+
+    global palabra
+
+    palabra = StringVar()
+
+    Label(palabra_frame, text='Introduce la palabra a adivinar:', bg='LightSkyBlue1', width=300, height=2, font=('Calibri',13)).pack()
+    Label(palabra_frame, text='').pack()
+    Entry(palabra_frame, textvariable=palabra, show='*').pack()
+    Label(palabra_frame, text='').pack()
+    Button(palabra_frame, text='Aceptar', cursor='hand2', width=10, height=1, command=juego).pack()
+
+
+# ----JUEGO----
+def juego():
+    palabra_frame.destroy()
 
     global juego_frame
     juego_frame = Frame(width=300, height=400)
     juego_frame.pack()
+
+
 
 
 # ----COMO JUGAR BOTON----
