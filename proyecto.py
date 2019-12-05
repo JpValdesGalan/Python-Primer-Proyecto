@@ -2,6 +2,9 @@ from tkinter import *
 import os
 import random
 
+contador = 10
+
+
 # ----MENU INICIAL----
 def menuprincipal():
     global menu
@@ -253,27 +256,30 @@ def juego():
     Button(juego_frame, text='Checar', cursor='hand2', width=10, height=1, command=display_text).place(x=20, y=120)
 
 def display_text():
-    contador=10
-    start=contador
-
+    global contador
+    ganador=True
     # Sacar palabra random de archivo
     archivo = open("Proyecto/palabras.txt", "r")
     line = archivo.readline()
     lista_palabras = line.split(";")
     check=lista_palabras[ran]
 
+   # Checar cada letra en caso de estar todas bien ganas de lo contrario resta a tus vidas
     for i in range(lenght):
         if check[i]!= lista_entries[i].get():
+            ganador=False
             if(lista_entries[i].get()!= ""):
                 contador = contador - 1
 
-    if contador==start:
-        check_empty=False
-        for j in range(ran):
-            if lista_entries[i].get()== "":
-                check_empty=True
-        if(check_empty==False):
+    print(contador)
+
+    if(contador<0):
+        print("Perdiste")
+    else:
+        if(ganador==True):
             print("Ganaste")
+
+
 
 
 # ----COMO JUGAR BOTON----
